@@ -21,8 +21,8 @@ export default {
       listPost: [
         {
           id:1,
-          userImage: 'https://picsum.photos/400/520',
-          resultImage: 'https://picsum.photos/400/520'
+          userImage: 'https://icatcare.org/app/uploads/2018/07/Thinking-of-getting-a-cat.png',
+          resultImage: 'https://i.dailymail.co.uk/1s/2019/10/29/14/20320992-7625529-Cara_a_five_year_old_125lb_Bengal_tiger_has_been_fitted_with_a_g-a-8_1572358357911.jpg'
         },
         {
           id:2,
@@ -36,6 +36,46 @@ export default {
         },
         {
           id:4,
+          userImage: 'https://picsum.photos/400/520',
+          resultImage: 'https://picsum.photos/400/520'
+        },
+        {
+          id:5,
+          userImage: 'https://picsum.photos/400/520',
+          resultImage: 'https://picsum.photos/400/520'
+        },
+        {
+          id:6,
+          userImage: 'https://picsum.photos/400/520',
+          resultImage: 'https://picsum.photos/400/520'
+        },
+        {
+          id:7,
+          userImage: 'https://picsum.photos/400/520',
+          resultImage: 'https://picsum.photos/400/520'
+        },
+        {
+          id:8,
+          userImage: 'https://picsum.photos/400/520',
+          resultImage: 'https://picsum.photos/400/520'
+        },
+        {
+          id:9,
+          userImage: 'https://picsum.photos/400/520',
+          resultImage: 'https://picsum.photos/400/520'
+        },
+        {
+          id:10,
+          userImage: 'https://picsum.photos/400/520',
+          resultImage: 'https://picsum.photos/400/520'
+        },
+        {
+          id:11,
+          userImage: 'https://picsum.photos/400/520',
+          resultImage: 'https://picsum.photos/400/520'
+        },
+        {
+          id:12,
           userImage: 'https://picsum.photos/400/520',
           resultImage: 'https://picsum.photos/400/520'
         }
@@ -58,6 +98,7 @@ export default {
   * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
   }
   a{
     text-decoration: none;

@@ -4,6 +4,7 @@
             v-for="post in posts" 
             :key="post.id"
             :result="post"
+            @dodo="doThis"
             >
         </singlePost>
     </div>
@@ -14,6 +15,11 @@ import singlePost from './post'
 
 export default {
     props: ['posts'],
+    methods: {
+        doThis(v) {
+            console.log(v)
+        }
+    },
     components: {
         singlePost
     }
@@ -21,5 +27,11 @@ export default {
 </script>
 
 <style scoped>
-
+    .list-post {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content:center;
+        width: 80vw;
+        margin: auto;
+    }
 </style>
