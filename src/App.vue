@@ -8,7 +8,7 @@
 
 <script>
 import imageDisplay from './components/imageDisplay'
-// import listPost from './components/listPost'
+import listPost from './components/listPost'
 
 export default {
   data() {
@@ -44,7 +44,7 @@ export default {
   },
   components: {
     imageDisplay,
-    // listPost
+    listPost
   },
   computed:{
     shareFacebook(){
