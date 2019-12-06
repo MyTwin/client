@@ -15,12 +15,12 @@
         </div>
 
         <div class="action-wrapper" @click="doThis">
-            <div class="like-count">99</div>
+            <div><a :href="shareFacebook" target="_blank"><span><i class="fab fa-facebook" style="margin-right: 5px;"></i></span></a></div>
             <div class="like" :class="liked" @click="likeThis"></div>
-            <button>SHARE</button>
+            <div class="like-count">{{ result.likes }}</div>
         </div>
         <label>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem perferendis repellat hic. Quam laudantium molestias illo tempore officia, provident impedit velit dicta id, porro perferendis aut. Illum dicta at nemo?
+            {{ result.caption }}
         </label>
     </div>
 </template>
@@ -30,7 +30,9 @@ export default {
     props: ['result'],
     data() {
         return {
-            liked: false
+            liked: false,
+            linkImage: 'https%3A%2F%2Fstorage.googleapis.com%2Fecommercebucket.danangbahari.com%2F1575580332867ayam.jpg',
+            desc: 'ini adalah ayam yang enak sekali'
         }
     },
     methods: {
@@ -43,6 +45,11 @@ export default {
             } else {
                 this.liked = 'liked'
             }
+        }
+    },
+    computed:{
+        shareFacebook(){
+        return `https://www.facebook.com/sharer/sharer.php?u=${this.linkImage}&quote=${this.desc}`
         }
     }
 }
