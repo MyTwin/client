@@ -10,7 +10,11 @@
 </template>
 
 <script>
+
+
 export default {
+    components:{
+    },
     props: ['srcUser', 'srcResult'],
 }
 </script>

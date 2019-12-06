@@ -13,7 +13,7 @@
                 <label>Password</label>
                 <input type="password" placeholder="Password" v-model="password">
             </div>
-            <input type="Submit" value="Register" @click="register">
+            <input type="Submit" value="Register" @click.prevent="register">
         </form>
     </div>
 </template>
