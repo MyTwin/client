@@ -1,8 +1,8 @@
 <template>
-    <form @submit.prevent="startUpload" v-el:form-upload-image>
+    <form @submit.prevent="startUpload">
         <div class="upload-btn-wrapper mx-4 my-4">
             <button class="btn">Upload Image</button>
-            <input type="file" name="myfile" @change.prevent="selectImage" />
+            <input type="file" ref="file" name="myfile" @change.prevent="selectImage" />
         </div>
     </form>
 </template>
@@ -20,10 +20,10 @@ export default {
   },
   methods: {
     selectImage: function(e){
-        const file = e.target.files[0];
-        this.image = URL.createObjectURL(file);
         let formData = new FormData();
-        formData.append('file', this.image);
+        this.image = this.$refs.file.files[0];
+        formData.append('image', this.image);
+        console.log('this.image => ',this.image);
         axios.post( 'http://localhost:3000/image/upload',
           formData,
           {
@@ -31,7 +31,8 @@ export default {
                 'Content-Type': 'multipart/form-data'
             }
           }
-        ).then(function(){
+        ).then(function(response){
+          console.log(response.data)
           console.log('SUCCESS!!');
         })
         .catch(function(){
