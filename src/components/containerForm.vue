@@ -1,6 +1,6 @@
 <template>
-    <div class="container d-flex justify-content-center">
-        <upload-image></upload-image>
+    <div class="container d-flex justify-content-center my-4" id="container-form">
+        <upload-image @resultfromserver="resultFromServer"></upload-image>
     </div>
 </template>
 
@@ -15,7 +15,10 @@ export default {
     }
   },
   methods: {
-    
+    resultFromServer: function(data){
+      this.$emit('resultfromserver',data)
+      // alert(data)
+    }
   },
   components: {
       uploadImage
@@ -24,7 +27,7 @@ export default {
 </script>
 
 <style scoped>
-  div {
-      border: 5px;
+  #container-form {
+      border-style: dotted;
   }
 </style>

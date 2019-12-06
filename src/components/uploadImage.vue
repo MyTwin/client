@@ -1,10 +1,12 @@
 <template>
-    <form @submit.prevent="startUpload" v-el:form-upload-image>
+    <div class="container d-flex justify-content-center">
+      <form @submit.prevent="startUpload">
         <div class="upload-btn-wrapper mx-4 my-4">
-            <button class="btn">Upload Image</button>
+            <button class="btn"><span class="glyphicon glyphicon-cloud-upload"></span> Upload Image</button>
             <input type="file" name="myfile" @change.prevent="selectImage" />
         </div>
-    </form>
+      </form>
+    </div>
 </template>
 
 <script>
@@ -14,12 +16,17 @@ import axios from 'axios'
 export default {
   data: function () {
     return {
-      image: null  
-      
+      image: null,
+      animation: false 
     }
+  },
+  components: {
   },
   methods: {
     selectImage: function(e){
+        // this.animation = true
+        // alert(this.animation)
+        $.blockUI({ message: '<h1><img src="busy.gif" /> Just a moment...</h1>' })
         const file = e.target.files[0];
         this.image = URL.createObjectURL(file);
         let formData = new FormData();
@@ -31,15 +38,16 @@ export default {
                 'Content-Type': 'multipart/form-data'
             }
           }
-        ).then(function(){
-          console.log('SUCCESS!!');
-        })
-        .catch(function(){
-          console.log('FAILURE!!');
-        });
-    },
-    startUpload: function(){
-        // alert('ini trigger dari onchange image')
+        )
+          .then(({data})=>{
+            $.unblockUI()
+            this.$emit('resultfromserver',data)
+          })
+          .catch( (err) => {
+            $.unblockUI()
+            // this.animation = false
+            // alert(this.animation)
+          });
     }
   }
 }
