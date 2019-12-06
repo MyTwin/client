@@ -18,7 +18,7 @@ export default {
 <style scoped>
     .box-image {
         width: 80vw;
-        height: 100vh;
+        height: calc(100vh - 3rem);
         margin: 0 auto;
         display: flex;
         justify-content: center;
