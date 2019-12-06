@@ -16,6 +16,7 @@
 
 <script>
 import axios from 'axios'
+import Swal from 'sweetalert2'
 
 export default {
     data() {
@@ -39,11 +40,19 @@ export default {
                     this.email = ""
                     this.password = ""
                     localStorage.setItem('token', data.access_token)
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Success',
+                        text: 'Login success'
+                    })
                     this.$emit('user-login', true)
-                    console.log(data)
                 })
                 .catch(err => {
-                    console.log(err)
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: `${err.response.data.message}`
+                    })
                 })
         }
     }

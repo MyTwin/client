@@ -20,6 +20,7 @@
 
 <script>
 import axios from 'axios'
+import Swal from 'sweetalert2'
 
 export default {
     data() {
@@ -46,10 +47,18 @@ export default {
                     this.username = ""
                     this.email = ""
                     this.password = ""
-                    console.log(data)
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Success',
+                        text: 'Account successfully created'
+                    })
                 })
                 .catch(err => {
-                    console.log(err)
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: `${err.response.data.message}`
+                    })
                 })
         }
     }

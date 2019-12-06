@@ -11,6 +11,7 @@
             </div>
             <div class="post-img">
                 <img :src="result.resultImage">
+                <label class="celeb-name">Emma Watson</label>
             </div>
         </div>
 
@@ -105,7 +106,6 @@ export default {
         min-width: 100%;
         min-height: 100%    
     }
-
     .action-wrapper {
         background-color: rgba(0, 0, 0, 0);
         display: flex;

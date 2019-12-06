@@ -19,6 +19,15 @@
     <login v-if="showLog && hideLogReg" @user-login="userIsLogin"></login>
     <register v-if="showReg && hideLogReg"></register>
 
+    <containerForm></containerForm>
+    <!-- <div class="container">
+      <upload-image></upload-image>
+      <imageDisplay :srcUser="userImage" :srcResult="resultImage" v-if="resultDisplay"></imageDisplay>
+    </div>
+    <div>
+      <a :href="shareFacebook" target="_blank"><span><i class="fab fa-facebook" style="margin-right: 5px;"></i></span></a>
+    </div> -->
+    <!-- <listPost :posts="listPost"></listPost> -->
   </div>
 </template>
 
@@ -29,6 +38,7 @@
   import navBar from './components/navbar'
   import login from './components/login'
   import register from './components/register'
+  import containerForm from './components/containerForm'
   import axios from 'axios'
   
 
@@ -111,7 +121,8 @@
       listPost,
       navBar,
       login,
-      register
+      register,
+      containerForm
     }
   }
 
