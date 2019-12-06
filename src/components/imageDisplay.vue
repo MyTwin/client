@@ -17,13 +17,16 @@ export default {
 
 <style scoped>
     .box-image {
-        height: 80vh;
-        width: 90vw;
+        width: 80vw;
+        height: 100vh;
         margin: 0 auto;
         display: flex;
-        justify-content: space-evenly;
+        justify-content: center;
+        align-items: center;
     }
     .image-wrapper {
+        width: 400px;
+        height: 500px;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -32,9 +35,8 @@ export default {
         cursor: pointer;
     }
     .image-wrapper img {
-        width: 400px;
         flex-shrink: 0;
         min-width: 100%;
-        min-height: 100%    
+        min-height: 100%;
     }
 </style>

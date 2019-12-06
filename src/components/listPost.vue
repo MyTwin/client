@@ -4,7 +4,7 @@
             v-for="post in posts" 
             :key="post.id"
             :result="post"
-            @dodo="doThis"
+            @test="doThis"
             >
         </singlePost>
     </div>
@@ -29,9 +29,10 @@ export default {
 <style scoped>
     .list-post {
         display: flex;
-        flex-wrap: wrap;
-        justify-content:center;
+        flex-direction: column;
+        align-items: center;
         width: 80vw;
         margin: auto;
+        padding-top: 2rem;
     }
 </style>
