@@ -9,6 +9,8 @@
 
 <script>
 
+import axios from 'axios'
+
 export default {
   data: function () {
     return {
@@ -18,16 +20,26 @@ export default {
   },
   methods: {
     selectImage: function(e){
-      // alert('masuk')
-      // this.$emit('asdasd','test')
-        // var formUpload = this.$els.formUploadImage
-        // formUpload.submit()
         const file = e.target.files[0];
         this.image = URL.createObjectURL(file);
-        alert(this.image)
+        let formData = new FormData();
+        formData.append('file', this.image);
+        axios.post( 'http://localhost:3000/image/upload',
+          formData,
+          {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+          }
+        ).then(function(){
+          console.log('SUCCESS!!');
+        })
+        .catch(function(){
+          console.log('FAILURE!!');
+        });
     },
     startUpload: function(){
-        alert('ini trigger dari onchange image')
+        // alert('ini trigger dari onchange image')
     }
   }
 }

@@ -1,7 +1,13 @@
 <template>
   <div>
-    <div><a :href="shareFacebook" target="_blank"><span><i class="fab fa-facebook" style="margin-right: 5px;"></i></span></a></div>
-    <imageDisplay :srcUser="userImage" :srcResult="resultImage"></imageDisplay>
+    <container-form></container-form>
+    <!-- <div class="container">
+      <upload-image></upload-image>
+      <imageDisplay :srcUser="userImage" :srcResult="resultImage" v-if="resultDisplay"></imageDisplay>
+    </div>
+    <div>
+      <a :href="shareFacebook" target="_blank"><span><i class="fab fa-facebook" style="margin-right: 5px;"></i></span></a>
+    </div> -->
     <!-- <listPost :posts="listPost"></listPost> -->
   </div>
 </template>
@@ -9,10 +15,13 @@
 <script>
 import imageDisplay from './components/imageDisplay'
 import listPost from './components/listPost'
+import uploadImage from './components/uploadImage'
+import containerForm from './components/containerForm'
 
 export default {
   data() {
     return {
+      resultDisplay: true,
       message: 'Hello world',
       linkImage: 'https%3A%2F%2Fstorage.googleapis.com%2Fecommercebucket.danangbahari.com%2F1575580332867ayam.jpg',
       desc: 'ini adalah ayam yang enak sekali',
@@ -96,7 +105,9 @@ export default {
   },
   components: {
     imageDisplay,
-    listPost
+    listPost,
+    uploadImage,
+    containerForm
   },
   computed:{
     shareFacebook(){
