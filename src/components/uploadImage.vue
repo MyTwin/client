@@ -8,7 +8,7 @@
 </template>
 
 <script>
-
+import Swal from 'sweetalert2'
 import axios from 'axios'
 
 export default {
@@ -20,10 +20,11 @@ export default {
   },
   methods: {
     selectImage: function(e){
+        Swal.showLoading()
         let formData = new FormData();
         this.image = this.$refs.file.files[0];
         formData.append('image', this.image);
-        console.log('this.image => ',this.image);
+
         axios.post( 'http://localhost:3000/image/upload',
           formData,
           {
@@ -31,16 +32,18 @@ export default {
                 'Content-Type': 'multipart/form-data'
             }
           }
-        ).then(function(response){
-          console.log(response.data)
-          console.log('SUCCESS!!');
+        ).then(({data}) => {
+          Swal.close()
+          this.$emit('sendImage', data)
         })
         .catch(function(){
-          console.log('FAILURE!!');
+          Swal.close()
+          Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: `${err.response.data.message}`
+          })
         });
-    },
-    startUpload: function(){
-        // alert('ini trigger dari onchange image')
     }
   }
 }
