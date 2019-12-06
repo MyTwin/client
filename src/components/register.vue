@@ -13,13 +13,14 @@
                 <label>Password</label>
                 <input type="password" placeholder="Password" v-model="password">
             </div>
-            <input type="Submit" value="Register" @click="register">
+            <input type="Submit" value="Register" @click.prevent="register">
         </form>
     </div>
 </template>
 
 <script>
 import axios from 'axios'
+import Swal from 'sweetalert2'
 
 export default {
     data() {
@@ -46,10 +47,18 @@ export default {
                     this.username = ""
                     this.email = ""
                     this.password = ""
-                    console.log(data)
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Success',
+                        text: 'Account successfully created'
+                    })
                 })
                 .catch(err => {
-                    console.log(err)
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: `${err.response.data.message}`
+                    })
                 })
         }
     }

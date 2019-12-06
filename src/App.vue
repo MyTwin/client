@@ -19,7 +19,7 @@
     <login v-if="showLog && hideLogReg" @user-login="userIsLogin"></login>
     <register v-if="showReg && hideLogReg"></register>
 
-    <container-form></container-form>
+    <containerForm></containerForm>
     <!-- <div class="container">
       <upload-image></upload-image>
       <imageDisplay :srcUser="userImage" :srcResult="resultImage" v-if="resultDisplay"></imageDisplay>
@@ -39,6 +39,7 @@
   import navBar from './components/navbar'
   import login from './components/login'
   import register from './components/register'
+  import containerForm from './components/containerForm'
   
 
   export default {
@@ -213,7 +214,8 @@
       listPost,
       navBar,
       login,
-      register
+      register,
+      containerForm
     }
   }
 
