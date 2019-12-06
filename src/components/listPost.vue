@@ -2,9 +2,9 @@
     <div class="list-post">
         <singlePost 
             v-for="post in posts" 
-            :key="post.id"
+            :key="post._id"
             :result="post"
-            @test="doThis"
+            @do-fetch="fetchData"
             >
         </singlePost>
     </div>
@@ -16,8 +16,8 @@ import singlePost from './post'
 export default {
     props: ['posts'],
     methods: {
-        doThis(v) {
-            console.log(v)
+        fetchData(){
+            this.$emit('fetch-data')
         }
     },
     components: {

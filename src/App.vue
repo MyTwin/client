@@ -13,7 +13,7 @@
     </div>
     
     <div id="main" v-if="main && !hideLogReg">
-      <listPost :posts="listPost"></listPost>
+      <listPost :posts="listPost" @fetch-data="fetchAllPostData"></listPost>
     </div>
 
     <login v-if="showLog && hideLogReg" @user-login="userIsLogin"></login>
@@ -28,7 +28,6 @@
       <a :href="shareFacebook" target="_blank"><span><i class="fab fa-facebook" style="margin-right: 5px;"></i></span></a>
     </div> -->
     <!-- <listPost :posts="listPost"></listPost> -->
-
   </div>
 </template>
 
@@ -40,6 +39,7 @@
   import login from './components/login'
   import register from './components/register'
   import containerForm from './components/containerForm'
+  import axios from 'axios'
   
 
   export default {
@@ -50,118 +50,11 @@
         isLogin: false,
         showLog: false,
         showReg: false,
+        baseUrl: 'http://localhost:3000',
         message: 'Hello world',
         userImage: 'https://picsum.photos/500',
         resultImage: 'https://picsum.photos/200/300',
-        listPost: [
-          {
-            id:1,
-            userImage: 'https://icatcare.org/app/uploads/2018/07/Thinking-of-getting-a-cat.png',
-            resultImage: 'https://i.dailymail.co.uk/1s/2019/10/29/14/20320992-7625529-Cara_a_five_year_old_125lb_Bengal_tiger_has_been_fitted_with_a_g-a-8_1572358357911.jpg',
-            userAvatar: 'https:picsum.photos/200',
-            caption: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem perferendis repellat hic. Quam laudantium molestias illo tempore officia, provident impedit velit dicta id, porro perferendis aut. Illum dicta at nemo?',
-            likes: 0
-          },
-          {
-            id:2,
-            userImage: 'https://picsum.photos/400/520',
-            userAvatar: 'https:picsum.photos/200',
-            resultImage: 'https://picsum.photos/400/520',
-            userAvatar: 'https:picsum.photos/200',
-            caption: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem perferendis repellat hic. Quam laudantium molestias illo tempore officia, provident impedit velit dicta id, porro perferendis aut. Illum dicta at nemo?',
-            likes: 10
-          },
-          {
-            id:3,
-            userImage: 'https://picsum.photos/400/520',
-            userAvatar: 'https:picsum.photos/200',
-            resultImage: 'https://picsum.photos/400/520',
-            userAvatar: 'https:picsum.photos/200',
-            caption: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem perferendis repellat hic. Quam laudantium molestias illo tempore officia, provident impedit velit dicta id, porro perferendis aut. Illum dicta at nemo?',
-            likes: 2
-          },
-          {
-            id:4,
-            userImage: 'https://picsum.photos/400/520',
-            userAvatar: 'https:picsum.photos/200',
-            resultImage: 'https://picsum.photos/400/520',
-            userAvatar: 'https:picsum.photos/200',
-            caption: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem perferendis repellat hic. Quam laudantium molestias illo tempore officia, provident impedit velit dicta id, porro perferendis aut. Illum dicta at nemo?',
-            likes: 55
-          },
-          {
-            id:5,
-            userImage: 'https://picsum.photos/400/520',
-            userAvatar: 'https:picsum.photos/200',
-            resultImage: 'https://picsum.photos/400/520',
-            userAvatar: 'https:picsum.photos/200',
-            caption: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem perferendis repellat hic. Quam laudantium molestias illo tempore officia, provident impedit velit dicta id, porro perferendis aut. Illum dicta at nemo?',
-            likes: 1
-          },
-          {
-            id:6,
-            userImage: 'https://picsum.photos/400/520',
-            userAvatar: 'https:picsum.photos/200',
-            resultImage: 'https://picsum.photos/400/520',
-            userAvatar: 'https:picsum.photos/200',
-            caption: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem perferendis repellat hic. Quam laudantium molestias illo tempore officia, provident impedit velit dicta id, porro perferendis aut. Illum dicta at nemo?',
-            likes: 0
-          },
-          {
-            id:7,
-            userImage: 'https://picsum.photos/400/520',
-            userAvatar: 'https:picsum.photos/200',
-            resultImage: 'https://picsum.photos/400/520',
-            userAvatar: 'https:picsum.photos/200',
-            caption: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem perferendis repellat hic. Quam laudantium molestias illo tempore officia, provident impedit velit dicta id, porro perferendis aut. Illum dicta at nemo?',
-            likes: 0
-          },
-          {
-            id:8,
-            userImage: 'https://picsum.photos/400/520',
-            userAvatar: 'https:picsum.photos/200',
-            resultImage: 'https://picsum.photos/400/520',
-            userAvatar: 'https:picsum.photos/200',
-            caption: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem perferendis repellat hic. Quam laudantium molestias illo tempore officia, provident impedit velit dicta id, porro perferendis aut. Illum dicta at nemo?',
-            likes: 0
-          },
-          {
-            id:9,
-            userImage: 'https://picsum.photos/400/520',
-            userAvatar: 'https:picsum.photos/200',
-            resultImage: 'https://picsum.photos/400/520',
-            userAvatar: 'https:picsum.photos/200',
-            caption: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem perferendis repellat hic. Quam laudantium molestias illo tempore officia, provident impedit velit dicta id, porro perferendis aut. Illum dicta at nemo?',
-            likes: 0
-          },
-          {
-            id:10,
-            userImage: 'https://picsum.photos/400/520',
-            userAvatar: 'https:picsum.photos/200',
-            resultImage: 'https://picsum.photos/400/520',
-            userAvatar: 'https:picsum.photos/200',
-            caption: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem perferendis repellat hic. Quam laudantium molestias illo tempore officia, provident impedit velit dicta id, porro perferendis aut. Illum dicta at nemo?',
-            likes: 0
-          },
-          {
-            id:11,
-            userImage: 'https://picsum.photos/400/520',
-            userAvatar: 'https:picsum.photos/200',
-            resultImage: 'https://picsum.photos/400/520',
-            userAvatar: 'https:picsum.photos/200',
-            caption: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem perferendis repellat hic. Quam laudantium molestias illo tempore officia, provident impedit velit dicta id, porro perferendis aut. Illum dicta at nemo?',
-            likes: 0
-          },
-          {
-            id:12,
-            userImage: 'https://picsum.photos/400/520',
-            userAvatar: 'https:picsum.photos/200',
-            resultImage: 'https://picsum.photos/400/520',
-            userAvatar: 'https:picsum.photos/200',
-            caption: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem perferendis repellat hic. Quam laudantium molestias illo tempore officia, provident impedit velit dicta id, porro perferendis aut. Illum dicta at nemo?',
-            likes: 0
-          }
-        ]
+        listPost: []
       };
     },
     methods: {
@@ -204,10 +97,24 @@
           } else {
             this.userIsLogout()
           }
+      },
+      fetchAllPostData(){
+        axios({
+          url: `${this.baseUrl}/post`,
+          method: 'GET'
+        })
+        .then(({data})=>{
+          console.log(data)
+          this.listPost = data
+        })
+        .catch(err => {
+          console.log(err)
+        })
       }
     },
     created() {
         this.checkLogin()
+        this.fetchAllPostData()
     },
     components: {
       imageDisplay,

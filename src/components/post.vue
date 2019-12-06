@@ -1,13 +1,13 @@
 <template>
     <div class="post-wrapper">
         <div class="avatar">
-            <img :src="result.userAvatar" alt="">
-            <h4>username</h4>
+            <img :src="result.UserId.avatar" alt="">
+            <h4>{{result.UserId.username}}</h4>
         </div>
 
         <div class="image-wrapper">
             <div class="post-img">
-                <img :src="result.userImage">
+                <img :src="result.image">
             </div>
             <div class="post-img">
                 <img :src="result.resultImage">
@@ -15,10 +15,10 @@
             </div>
         </div>
 
-        <div class="action-wrapper" @click="doThis">
-            <div><a :href="shareFacebook" target="_blank"><span><i class="fab fa-facebook" style="margin-right: 5px;"></i></span></a></div>
-            <div class="like" :class="liked" @click="likeThis"></div>
-            <div class="like-count">{{ result.likes }}</div>
+        <div class="action-wrapper">
+            <div><a :href="`https://www.facebook.com/sharer/sharer.php?u=${result.resultImage}&quote=${result.caption}`" target="_blank"><span><i class="fab fa-facebook" style="margin-right: 5px;"></i></span></a></div>
+            <div class="like" :class="liked" @click="likeThis(result._id)"></div>
+            <div class="like-count">{{ result.likes.length }}</div>
         </div>
         <label>
             {{ result.caption }}
@@ -27,25 +27,37 @@
 </template>
 
 <script>
+
+import axios from 'axios'
+
 export default {
     props: ['result'],
     data() {
         return {
-            liked: false,
-            linkImage: 'https%3A%2F%2Fstorage.googleapis.com%2Fecommercebucket.danangbahari.com%2F1575580332867ayam.jpg',
-            desc: 'ini adalah ayam yang enak sekali'
+            liked: '',
+            baseUrl: 'http://localhost:3000'
         }
     },
     methods: {
-        doThis() {
-            this.$emit('test', 'aku kirim nih')
-        },
-        likeThis() {
-            if (this.liked === 'liked') {
-                this.liked = false
-            } else {
-                this.liked = 'liked'
-            }
+        likeThis(id) {
+            axios({
+                url: `${this.baseUrl}/post/${id}/likes`,
+                method: 'PUT',
+                headers:{
+                    access_token: localStorage.getItem('token')
+                }
+            })
+            .then(({data})=>{
+                if(data.message == 'Give Like Success'){
+                    this.liked = 'liked'
+                }else{
+                    this.liked = ''
+                }
+                this.$emit('do-fetch')
+            })
+            .catch(err => {
+                console.log(err)
+            })
         }
     },
     computed:{
