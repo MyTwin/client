@@ -9,7 +9,12 @@
     </navBar>
     
     <div id="front" v-if="!main && !hideLogReg">
-      <imageDisplay :srcUser="userImage" :srcResult="resultImage"></imageDisplay>
+      <imageDisplay 
+        :srcUser="userImage" 
+        :srcResult="resultImage"
+        @dataCreate="fetchAllPostData"
+        @goTimeline="changeMain"
+        ></imageDisplay>
     </div>
     
     <div id="main" v-if="main && !hideLogReg">
@@ -19,7 +24,6 @@
     <login v-if="showLog && hideLogReg" @user-login="userIsLogin"></login>
     <register v-if="showReg && hideLogReg"></register>
 
-    <containerForm></containerForm>
     <!-- <div class="container">
       <upload-image></upload-image>
       <imageDisplay :srcUser="userImage" :srcResult="resultImage" v-if="resultDisplay"></imageDisplay>
@@ -40,6 +44,7 @@
   import register from './components/register'
   import containerForm from './components/containerForm'
   import axios from 'axios'
+  import Swal from 'sweetalert2'
   
 
   export default {
@@ -104,11 +109,14 @@
           method: 'GET'
         })
         .then(({data})=>{
-          console.log(data)
           this.listPost = data
         })
         .catch(err => {
-          console.log(err)
+          Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: `${err.response.data.message}`
+          })
         })
       }
     },
@@ -121,8 +129,7 @@
       listPost,
       navBar,
       login,
-      register,
-      containerForm
+      register
     }
   }
 

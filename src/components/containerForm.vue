@@ -1,6 +1,6 @@
 <template>
     <div class="container d-flex justify-content-center">
-        <upload-image></upload-image>
+        <upload-image @sendImage="getImage"></upload-image>
     </div>
 </template>
 
@@ -15,7 +15,9 @@ export default {
     }
   },
   methods: {
-    
+    getImage(v) {
+      this.$emit('getData', v)
+    }
   },
   components: {
       uploadImage

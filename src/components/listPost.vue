@@ -29,7 +29,7 @@ export default {
 <style scoped>
     .list-post {
         display: flex;
-        flex-direction: column;
+        flex-direction: column-reverse;
         align-items: center;
         width: 80vw;
         margin: auto;
